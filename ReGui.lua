@@ -5199,39 +5199,16 @@ end
 function aa.LoadPrefabs(n): Folder?
     local o = n.PlayerGui
     local p = 'ReGui-Prefabs'
-    local q = typeof(script) == 'Instance' and script:FindFirstChild(p)
+    local q = script:WaitForChild(p, 2)
 
     if q then
         return q
     end
 
-    local r = o:FindFirstChild(p)
+    local r = o:WaitForChild(p, 2)
 
     if r then
         return r
-    end
-
-    local v = n.PrefabsId
-
-    if v then
-        local w = n.Services.InsertService
-        local x, y = pcall(function()
-            return w:LoadAsset(v)
-        end)
-
-        if x and y then
-            local z = y:FindFirstChild(p)
-
-            if z then
-                z.Parent = o
-
-                return z
-            end
-
-            y.Parent = o
-
-            return y
-        end
     end
 
     return nil

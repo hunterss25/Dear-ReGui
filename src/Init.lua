@@ -324,30 +324,12 @@ function ReGui:LoadPrefabs(): Folder?
 	local Name = "ReGui-Prefabs"
 
 	--// Check script for prefabs
-	local ScriptUi = typeof(script) == "Instance" and script:FindFirstChild(Name)
+	local ScriptUi = script:WaitForChild(Name, 2)
 	if ScriptUi then return ScriptUi end
 
 	--// Check PlayerGui for prefabs (Studio Debug)
-	local PlayerUI = PlayerGui:FindFirstChild(Name)
+	local PlayerUI = PlayerGui:WaitForChild(Name, 2)
 	if PlayerUI then return PlayerUI end
-
-	--// Load from asset id
-	local PrefabsId = self.PrefabsId
-	if PrefabsId then
-		local InsertService = self.Services.InsertService
-		local Success, Model = pcall(function()
-			return InsertService:LoadAsset(PrefabsId)
-		end)
-		if Success and Model then
-			local Prefabs = Model:FindFirstChild(Name)
-			if Prefabs then
-				Prefabs.Parent = PlayerGui
-				return Prefabs
-			end
-			Model.Parent = PlayerGui
-			return Model
-		end
-	end
 
 	return nil
 end

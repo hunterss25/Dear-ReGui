@@ -1,0 +1,8 @@
+{
+    "aliases": {
+        "lib": "lib",
+        "classes": "src/classes",
+        "config": "src/configurations",
+        "src": "src"
+    }
+}
