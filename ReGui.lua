@@ -5211,6 +5211,29 @@ function aa.LoadPrefabs(n): Folder?
         return r
     end
 
+    local v = n.PrefabsId
+
+    if v then
+        local w = n.Services.InsertService
+        local x, y = pcall(function()
+            return w:LoadAsset(v)
+        end)
+
+        if x and y then
+            local z = y:FindFirstChild(p)
+
+            if z then
+                z.Parent = o
+
+                return z
+            end
+
+            y.Parent = o
+
+            return y
+        end
+    end
+
     return nil
 end
 function aa.CheckConfig(n, o: table, p: table, q: boolean?, r: table?)
