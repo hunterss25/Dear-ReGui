@@ -5199,13 +5199,13 @@ end
 function aa.LoadPrefabs(n): Folder?
     local o = n.PlayerGui
     local p = 'ReGui-Prefabs'
-    local q = script:WaitForChild(p, 2)
+    local q = typeof(script) == 'Instance' and script:FindFirstChild(p)
 
     if q then
         return q
     end
 
-    local r = o:WaitForChild(p, 2)
+    local r = o:FindFirstChild(p)
 
     if r then
         return r

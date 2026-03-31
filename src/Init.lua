@@ -324,11 +324,11 @@ function ReGui:LoadPrefabs(): Folder?
 	local Name = "ReGui-Prefabs"
 
 	--// Check script for prefabs
-	local ScriptUi = script:WaitForChild(Name, 2)
+	local ScriptUi = typeof(script) == "Instance" and script:FindFirstChild(Name)
 	if ScriptUi then return ScriptUi end
 
 	--// Check PlayerGui for prefabs (Studio Debug)
-	local PlayerUI = PlayerGui:WaitForChild(Name, 2)
+	local PlayerUI = PlayerGui:FindFirstChild(Name)
 	if PlayerUI then return PlayerUI end
 
 	--// Load from asset id
